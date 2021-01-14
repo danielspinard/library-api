@@ -57,6 +57,12 @@ class WorksFacade
 
     public static function destroy(int $id)
     {
-        self::repository()->findById($id)->destroy();
+        $work = self::repository()->findById($id);
+
+        if (!$work->id)
+            return 'work not found with id: ' . $id;
+
+        $work->destroy();
+        return 'work successfully deleted';
     }
 }
