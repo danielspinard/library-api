@@ -13,6 +13,9 @@
     "autoload": {
       "psr-4": {
         "Src\\": "src/"
-      }
+      },
+      "files": [
+        "src/helpers.php"
+      ]
     }
   }
