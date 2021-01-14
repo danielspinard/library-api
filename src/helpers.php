@@ -11,6 +11,7 @@ if (!function_exists('env'))
 if (!function_exists('response')) {
     function response ($data)
     {
+        header("Content-Type: application/json");
         return json_encode($data);
     }
 }
