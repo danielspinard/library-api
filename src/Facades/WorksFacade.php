@@ -4,7 +4,7 @@ namespace Src\Facades;
 
 use Src\Models\WorksModel as Repository;
 
-class WoksFacade
+class WokrsFacade
 {
     /**
      * @var Repository
