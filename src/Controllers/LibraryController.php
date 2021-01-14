@@ -8,7 +8,9 @@ class LibraryController
 {
     public function store(array $data): void
     {
-        echo "store";
+        echo response([
+            'message' => Facade::store($data)
+        ]);
     }
 
     public function show(array $data)
