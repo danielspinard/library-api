@@ -1,0 +1,8 @@
+/.git
+/.idea
+/.vscode
+/vendor
+/cache
+.env
+.gitigone
+composer.lock
