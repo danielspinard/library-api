@@ -1,8 +1,8 @@
 <?php
 
-if (function_exists('response')) {
+if (!function_exists('response')) {
     function response ($data)
     {
-        json_encode($data);
+        return json_encode($data);
     }
 }
