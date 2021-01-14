@@ -9,7 +9,7 @@ class WoksFacade
     /**
      * @var Repository
      */
-    private static $works;
+    private static $worksModel;
 
     /**
      * @var int
@@ -23,10 +23,10 @@ class WoksFacade
      */
     private static function repository(): Repository
     {
-        if(empty(self::$works))
-            self::$works = new Repository();
+        if(empty(self::$worksModel))
+            self::$worksModel = new Repository();
         
-        return self::$works;
+        return self::$worksModel;
     }
 
     public static function count(int $count = 0)
