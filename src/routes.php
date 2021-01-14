@@ -1,8 +1,6 @@
 <?php
 
-use CoffeeCode\Router\Router;
-
-$app = new Router(env('APP_URL'));
+$app = new CoffeeCode\Router\Router(env('APP_URL'));
 
 $app->namespace("Src\Controllers")
     ->group("works");
