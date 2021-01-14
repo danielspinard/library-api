@@ -21,11 +21,11 @@ class LibraryController
     public function index()
     {
         foreach(Facade::fetchAll() as $work)
-            $results[$work->id] = $work->data();
+            $works[$work->id] = $work->data();
 
         echo response([
             'count' => Facade::count(),
-            'works' => $results ?? null
+            'works' => $works ?? null
         ]);
     }
 
