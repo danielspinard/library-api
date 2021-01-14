@@ -2,7 +2,7 @@
 
 use CoffeeCode\Router\Router;
 
-$app = new Router("http://library.test");
+$app = new Router(env('APP_URL'));
 
 $app->namespace("Src\Controllers")
     ->group("works");
