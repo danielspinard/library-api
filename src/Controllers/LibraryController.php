@@ -2,7 +2,7 @@
 
 namespace Src\Controllers;
 
-use Src\Facades\WoksFacade as Facade;
+use Src\Facades\WorksFacade as Facade;
 
 class LibraryController
 {
