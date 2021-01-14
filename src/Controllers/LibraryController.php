@@ -2,6 +2,8 @@
 
 namespace Src\Controllers;
 
+use Src\Facades\WoksFacade as Facade;
+
 class LibraryController
 {
     public function store(array $data): void
@@ -9,9 +11,22 @@ class LibraryController
         echo "store";
     }
 
-    public function index(): void
+    public function show(array $data)
     {
-        echo "index";
+        echo response([
+            'work' => Facade::findById($data['id'])
+        ]); 
+    }
+
+    public function index()
+    {
+        foreach(Facade::fetchAll() as $work)
+            $results[$work->id] = $work->data();
+
+        echo response([
+            'count' => Facade::count(),
+            'works' => $results ?? null
+        ]);
     }
 
     public function update(array $data): void
