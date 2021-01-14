@@ -37,7 +37,7 @@ class WoksFacade
         return self::$count;
     }
 
-    public static function findById($id)
+    public static function findById(int $id)
     {
         $work = self::repository()->findById($id);
 
@@ -53,5 +53,10 @@ class WoksFacade
         self::count($works->count());
         
         return $works->order('id')->fetch(true);
+    }
+
+    public static function destroy(int $id)
+    {
+        self::repository()->findById($id)->destroy();
     }
 }
