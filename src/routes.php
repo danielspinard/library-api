@@ -7,6 +7,7 @@ $app = new Router(env('APP_URL'));
 $app->namespace("Src\Controllers")
     ->group("works");
     
+$app->get("/{id}", "LibraryController:show", "api.show");
 $app->post("/", "LibraryController:store", "api.store");
 $app->get("/", "LibraryController:index", "api.index");
 $app->put("/{id}", "LibraryController:update", "api.update");
