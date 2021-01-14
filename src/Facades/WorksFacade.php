@@ -29,6 +29,21 @@ class WorksFacade
         return self::$worksModel;
     }
 
+    public static function store(array $data)
+    {
+        $work = self::repository();
+        $work->title = $data['title'];
+        $work->photo = $data['photo'];
+        $work->authors = $data['authors'];
+        $work->publishing_company = $data['pub_company'];
+        $work->save();
+
+        if($work->fail())
+            return $work->fail()->getMessage();
+        
+        return 'new work successfully registered';
+    }
+
     public static function count(int $count = 0)
     {
         if($count > 1)
