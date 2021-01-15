@@ -29,6 +29,11 @@ class WorksFacade
         return self::$worksModel;
     }
 
+    public static function count()
+    {
+        return self::repository()->find(null, null, 'id')->count();
+    }
+
     public static function store(array $data)
     {
         $work = self::repository();
@@ -44,14 +49,6 @@ class WorksFacade
         return 'new work successfully registered';
     }
 
-    public static function count(int $count = 0)
-    {
-        if($count > 1)
-            self::$count = $count;
-        
-        return self::$count;
-    }
-
     public static function findById(int $id)
     {
         $work = self::repository()->findById($id);
@@ -64,10 +61,7 @@ class WorksFacade
 
     public static function fetchAll()
     {
-        $works = self::repository()->find();
-        self::count($works->count());
-        
-        return $works->order('id')->fetch(true);
+        return self::repository()->find()->order('id')->fetch(true);
     }
 
     public static function destroy(int $id)
