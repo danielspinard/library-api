@@ -34,6 +34,6 @@ class LibraryController
 
     public function destroy(array $data): void
     {
-        echo response(['message' =>  Facade::destroy($data['id'])]);
+        echo response(['message' =>  Facade::destroy($data)]);
     }
 }
