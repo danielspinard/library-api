@@ -29,6 +29,11 @@ class WorksFacade
         return self::$worksModel;
     }
 
+    private static function validIntId(string $id): bool
+    {
+        return filter_var($id, FILTER_VALIDATE_INT);
+    }
+
     public static function count()
     {
         return self::repository()->find(null, null, 'id')->count();
@@ -51,8 +56,8 @@ class WorksFacade
 
     public static function findById(array $data)
     {
-        if (!filter_var($data['id'], FILTER_VALIDATE_INT))
-            return 'invalid id';
+        if (!self::validIntId($data['id']))
+            return 'id format is invalid!';;
 
         $work = self::repository()->findById($data['id']);
 
@@ -67,14 +72,17 @@ class WorksFacade
         return self::repository()->find()->order('id')->fetch(true);
     }
 
-    public static function destroy(int $id)
+    public static function destroy(array $data): string
     {
-        $work = self::repository()->findById($id);
+        if (!self::validIntId($data['id']))
+            return 'Impossible to delete work because the ID format is invalid!';
+
+        $work = self::repository()->findById($data['id']);
 
         if (!$work->id)
-            return 'work not found with id: ' . $id;
+            return 'work not found with id: ' . $data['id'];
 
         $work->destroy();
-        return 'work successfully deleted';
+        return 'work #' . $data['id'] . 'successfully deleted';
     }
 }
