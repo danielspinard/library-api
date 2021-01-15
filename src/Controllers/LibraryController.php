@@ -8,16 +8,12 @@ class LibraryController
 {
     public function store(array $data): void
     {
-        echo response([
-            'message' => Facade::store($data)
-        ]);
+        echo response(['message' => Facade::store($data)]);
     }
 
     public function show(array $data)
     {
-        echo response([
-            'work' => Facade::findById($data['id'])
-        ]); 
+        echo response(['work' => Facade::findById($data)]);
     }
 
     public function index()
@@ -38,8 +34,6 @@ class LibraryController
 
     public function destroy(array $data): void
     {
-        echo response([
-            'message' =>  Facade::destroy($data['id'])
-        ]);
+        echo response(['message' =>  Facade::destroy($data['id'])]);
     }
 }
