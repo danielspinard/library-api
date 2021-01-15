@@ -34,7 +34,7 @@ class WorksFacade
         return filter_var($id, FILTER_VALIDATE_INT);
     }
 
-    public static function count()
+    public static function count(): int
     {
         return self::repository()->find(null, null, 'id')->count();
     }
@@ -42,10 +42,12 @@ class WorksFacade
     public static function store(array $data)
     {
         $work = self::repository();
+
         $work->title = $data['title'];
         $work->photo = $data['photo'];
         $work->authors = $data['authors'];
         $work->publishing_company = $data['pub_company'];
+
         $work->save();
 
         if($work->fail())
@@ -61,10 +63,10 @@ class WorksFacade
 
         $work = self::repository()->findById($data['id']);
 
-        if ($work->id)
-            return $work->data();
-
-        return 'no work found with id: ' . $data['id'];
+        if (!$work->id)
+            return 'no work found with id: ' . $data['id'];
+            
+        return $work->data();
     }
 
     public static function fetchAll()
