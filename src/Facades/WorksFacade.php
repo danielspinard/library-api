@@ -46,7 +46,7 @@ class WorksFacade
         if($work->fail())
             return $work->fail()->getMessage();
         
-        return 'new work successfully registered';
+        return 'new work successfully registered, work id: ' . self::count();
     }
 
     public static function findById(int $id)
