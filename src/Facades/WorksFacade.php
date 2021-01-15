@@ -11,10 +11,6 @@ class WorksFacade
      */
     private static $worksModel;
 
-    /**
-     * @var int
-     */
-    private static $count = 0;
 
     /**
      * Creates an instance of the model Works
