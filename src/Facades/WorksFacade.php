@@ -11,9 +11,8 @@ class WorksFacade
      */
     private static $worksModel;
 
-
     /**
-     * Creates an instance of the model Works
+     * Return an instance of the ModelWorks
      *
      * @return Repository
      */
