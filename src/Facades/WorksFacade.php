@@ -49,14 +49,17 @@ class WorksFacade
         return 'new work successfully registered, work id: ' . self::count();
     }
 
-    public static function findById(int $id)
+    public static function findById(array $data)
     {
-        $work = self::repository()->findById($id);
+        if (!filter_var($data['id'], FILTER_VALIDATE_INT))
+            return 'invalid id';
+
+        $work = self::repository()->findById($data['id']);
 
         if ($work->id)
             return $work->data();
 
-        return 'no work found with id: ' . $id;
+        return 'no work found with id: ' . $data['id'];
     }
 
     public static function fetchAll()
