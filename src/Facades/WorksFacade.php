@@ -60,15 +60,13 @@ class WorksFacade
 
     public static function findById(array $data)
     {
-        if (!self::validIntId($data['id']))
-            return 'id format is invalid!';;
-
         $work = self::repository()->findById($data['id']);
 
-        if (!$work->id)
-            return 'no work found with id: ' . $data['id'];
+        if ($work->id)
+            return $work->data();
             
-        return $work->data();
+        return 'No work found with id: ' . $data['id'];
+            
     }
 
     public static function fetchAll()
