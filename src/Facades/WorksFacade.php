@@ -3,6 +3,7 @@
 namespace Src\Facades;
 
 use Src\Models\WorksModel as Repository;
+use Src\Facades\Work\{Store};
 
 class WorksFacade
 {
@@ -36,19 +37,7 @@ class WorksFacade
 
     public static function store(array $data)
     {
-        $work = self::repository();
-
-        $work->title = $data['title'];
-        $work->photo = $data['photo'];
-        $work->authors = $data['authors'];
-        $work->publishing_company = $data['pub_company'];
-
-        $work->save();
-
-        if($work->fail())
-            return $work->fail()->getMessage();
-        
-        return 'new work successfully registered, work id: ' . self::count();
+        return (new Store(self::repository(), $data))->store()->getMessage();
     }
 
     public static function findById(array $data)
