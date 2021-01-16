@@ -4,7 +4,7 @@ namespace Src\Facades;
 
 use Src\Models\WorksModel as Repository;
 use Src\Facades\Work\{
-    Store, Destroy
+    Store, Destroy, Update
 };
 
 class WorksFacade
@@ -37,9 +37,17 @@ class WorksFacade
         return self::repository()->find(null, null, 'id')->count();
     }
 
-    public static function store(array $data)
+    public static function store(array $data): string
     {
         return (new Store(self::repository(), $data))->store()->getMessage();
+    }
+
+    public static function update(array $data): string
+    {
+        if (self::validIntId($data['id']))
+            return (new Update(self::repository(), $data))->update()->getMessage();
+        
+        return 'Error to update work because the ID is invalid!';
     }
 
     public static function destroy(array $data): string
