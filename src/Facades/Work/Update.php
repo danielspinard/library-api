@@ -11,14 +11,19 @@ class Update
      */
     private $repository;
 
+    /**
+     * @var int
+     */
+    private $id;
+    
     public function __construct(Repository $repository, array $work)
     {
-        $repository->findById($this->id = $work['id']);
+        $repository = $repository->findById($this->id = $work['id']);
 
-        $repository->title;
-        $repository->photo;
-        $repository->authors;
-        $repository->publishing_company;
+        $repository->title = $work['title'] ?? $repository->title;
+        $repository->photo = $work['photo'] ?? $repository->photo;
+        $repository->authors = $work['authors'] ?? $repository->authors;
+        $repository->publishing_company = $work['pub_company'] ?? $repository->publishing_company;
 
         $this->repository = $repository;
     }
