@@ -16,6 +16,16 @@ class LibraryController
         echo response(['work' => Facade::findById($data)]);
     }
 
+    public function update(array $data): void
+    {
+        echo response(['message' =>  Facade::update($data)]);
+    }
+
+    public function destroy(array $data): void
+    {
+        echo response(['message' =>  Facade::destroy($data)]);
+    }
+
     public function index()
     {
         foreach(Facade::fetchAll() as $work)
@@ -25,15 +35,5 @@ class LibraryController
             'count' => Facade::count(),
             'works' => $works ?? null
         ]);
-    }
-
-    public function update(array $data): void
-    {
-        echo "update";
-    }
-
-    public function destroy(array $data): void
-    {
-        echo response(['message' =>  Facade::destroy($data)]);
     }
 }
