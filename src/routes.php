@@ -14,7 +14,7 @@ $app->dispatch();
 
 if ($app->error())
     echo response([
-        "code" => $app->error(), 
-        "message" => "request/response error",
+        'code' => $app->error(), 
+        'message' => 'client request or server response error',
         "routes" => $app->__debugInfo()
     ]);
