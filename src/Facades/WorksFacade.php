@@ -3,7 +3,7 @@
 namespace Src\Facades;
 
 use Src\Models\WorksModel as Repository;
-use Src\Facades\Work\{Store};
+use Src\Facades\Work\{Store, Destroy};
 
 class WorksFacade
 {
@@ -60,15 +60,9 @@ class WorksFacade
 
     public static function destroy(array $data): string
     {
-        if (!self::validIntId($data['id']))
-            return 'Impossible to delete work because the ID format is invalid!';
-
-        $work = self::repository()->findById($data['id']);
-
-        if (!$work->id)
-            return 'work not found with id: ' . $data['id'];
-
-        $work->destroy();
-        return 'work #' . $data['id'] . 'successfully deleted';
+        if (self::validIntId($id = $data['id']))
+            return (new Destroy(self::repository(), $id))->destroy()->getMessage();
+        
+        return 'Impossible to delete work because the ID format is invalid!';
     }
 }
