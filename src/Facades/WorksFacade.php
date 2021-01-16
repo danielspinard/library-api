@@ -3,7 +3,9 @@
 namespace Src\Facades;
 
 use Src\Models\WorksModel as Repository;
-use Src\Facades\Work\{Store, Destroy};
+use Src\Facades\Work\{
+    Store, Destroy
+};
 
 class WorksFacade
 {
@@ -40,6 +42,14 @@ class WorksFacade
         return (new Store(self::repository(), $data))->store()->getMessage();
     }
 
+    public static function destroy(array $data): string
+    {
+        if (self::validIntId($id = $data['id']))
+            return (new Destroy(self::repository(), $id))->destroy()->getMessage();
+        
+        return 'Impossible to delete work because the ID format is invalid!';
+    }
+
     public static function findById(array $data)
     {
         if (!self::validIntId($data['id']))
@@ -56,13 +66,5 @@ class WorksFacade
     public static function fetchAll()
     {
         return self::repository()->find()->order('id')->fetch(true);
-    }
-
-    public static function destroy(array $data): string
-    {
-        if (self::validIntId($id = $data['id']))
-            return (new Destroy(self::repository(), $id))->destroy()->getMessage();
-        
-        return 'Impossible to delete work because the ID format is invalid!';
     }
 }
